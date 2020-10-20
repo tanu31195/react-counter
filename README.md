@@ -1,3 +1,50 @@
+`<React.Fragment> </React.Fragment>` can be used for `<div> </div>`
+It’s a tiny bit faster and has less memory usage (no need to create an extra DOM node). This only has a real benefit on 
+very large and/or deep trees, but application performance often suffers from death by a thousand cuts. This is one cut less.  
+Some CSS mechanisms like Flexbox and CSS Grid have a special parent-child relationship, and adding divs in the middle 
+makes it hard to keep the desired layout while extracting logical components.  
+The DOM inspector is less cluttered.
+
+Using custom css, but use classes for better performance and maintainability  
+`    styles = {
+        fontSize: 10,
+        fontWeight: 'bold'
+    };`
+
+
+`state = {
+      count: 10,
+        imageUrl: 'https://picsum.photos/200'
+    };`
+`<img src={this.state.imageUrl} alt=''/>`
+
+Hardcoding classes  
+`<span style={this.styles} className='badge badge-danger m-2'>{this.formatCount()}</span>`
+
+Using inline styling  
+`<span style={{ fontSize: 50 }} className='badge badge-primary m-2'>{this.formatCount()}</span>`
+
+
+`export default class Counter extends Component{`
+or
+`export default Counter;`
+can be used to export
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
