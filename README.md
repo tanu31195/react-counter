@@ -18,7 +18,7 @@ Using custom css, but use classes for better performance and maintainability
     };`
 `<img src={this.state.imageUrl} alt=''/>`
 
-Hardcoding classes  
+Hard coding classes  
 `<span style={this.styles} className='badge badge-danger m-2'>{this.formatCount()}</span>`
 
 Using inline styling  
@@ -30,12 +30,26 @@ or
 `export default Counter;`
 can be used to export
 
+#### && Operator
+However, the && operator actually returns the value of one of the specified operands, 
+so if this operator is used with non-Boolean values, it will return a non-Boolean value.
+If expr1 can be converted to true, returns expr2; else, returns expr1.
 
+expressions that can be converted to false are:  
+- null;
+- NaN;
+- 0;
+- empty string ("" or '' or ``);
+- undefined.
 
+### Handling events
 
+Use {} to pass expressions
 
+Naming convention for event methods handle......  Eg: handleIncrement() {}
 
-
+Not calling methods, but simply passing a reference to the method this.handleIncrement
+In vanilla js the target function is called this.handleIncrement()
 
 
 
