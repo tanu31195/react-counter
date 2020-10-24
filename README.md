@@ -30,7 +30,9 @@ or
 `export default Counter;`
 can be used to export
 
-#### && Operator
+<hr>  
+
+### && Operator
 However, the && operator actually returns the value of one of the specified operands, 
 so if this operator is used with non-Boolean values, it will return a non-Boolean value.
 If expr1 can be converted to true, returns expr2; else, returns expr1.
@@ -42,6 +44,8 @@ expressions that can be converted to false are:
 - empty string ("" or '' or ``);
 - undefined.
 
+<hr>
+
 ### Handling events
 
 Use {} to pass expressions
@@ -50,6 +54,59 @@ Naming convention for event methods handle......  Eg: handleIncrement() {}
 
 Not calling methods, but simply passing a reference to the method this.handleIncrement
 In vanilla js the target function is called this.handleIncrement()
+
+<hr>
+
+### Binding event handlers
+#### this
+`this` in JS behaves differently than other languages  
+Depending on how a function is called `this` can reference different objects  
+
+`use strict` to enable strict mode 
+With strict mode, you can not, use undeclared variables.  
+Strict mode makes it easier to write "secure" JavaScript.  
+
+The `this` keyword in functions behaves differently in strict mode.  
+
+`obj.method()`  this refers to obj  
+The `this` keyword refers to the object that called the function.
+
+`function()` Standalone function refers to the window object  
+If the object is not specified, functions in strict mode will return `undefined` and functions   
+in normal mode will return the global object (window):  
+
+Functions in JavaScript are objects, so they have properties and methods.  
+So we can use bind method to set the value of `this`  
+Bind creates a new function that will force the `this` inside the function to be the parameter passed to `bind()`
+
+#### To bind event handlers use,
+
+    constructor() {
+        super(); //base constructor
+        console.log(this);
+        this.handleIncrement.bind(this)
+    //    This bind method will return a new instance of the handleIncrement(), and in that function this will be referenced to the current object (Counter)
+    }
+    
+    handleIncrement() {
+            console.log('Increment clicked');
+        }
+
+or  
+
+     handleIncrement = () => {
+         console.log('Increment clicked');
+     };
+
+Arrow functions cannot rebind `this`, they inherit `this`
+
+
+
+
+
+
+
+
 
 
 

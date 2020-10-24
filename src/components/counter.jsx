@@ -9,7 +9,7 @@ class Counter extends Component {
 
     handleIncrement() {
         console.log('Increment clicked');
-    }
+    };
 
     render() {
 
