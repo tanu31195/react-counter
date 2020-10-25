@@ -7,8 +7,8 @@ class Counter extends Component {
       tags: ['tag1', 'tag2', 'tag3']
     };
 
-    handleIncrement = () => {
-        console.log('Increment clicked');
+    handleIncrement = product => {
+        console.log(product);
         this.setState({count: this.state.count + 1});
     };
 
@@ -18,7 +18,11 @@ class Counter extends Component {
             <div>
                 {/*Using dynamic classes*/}
                 <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-                <button onClick={this.handleIncrement} className='btn btn-secondary btn-sm'>Increment</button>
+                <button
+                    onClick={() => this.handleIncrement({id:11})}
+                    className='btn btn-secondary btn-sm'>
+                    Increment
+                </button>
                 {/*<ul>*/}
                 {/*    {this.state.tags.map(tag => <li key={tag}> {tag} </li>)}*/}
                 {/*</ul>*/}

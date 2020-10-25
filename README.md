@@ -122,11 +122,37 @@ React will then schedule a call to the render() sometime in the future, this is 
 So the virtual DOM will be updated and will compare with the old DOM to figure out what elements are modified  
 and update the corresponding elements in the Real DOM.
 
+### Passing event arguments
+
+Using a wrapper/helper method (Simple solution and this is messy to use)  
+    
+    handleIncrement = product => {
+        console.log(product);
+    }
+    
+    doHandleIncrement = () => {
+        this.handleIncrement({id:1})
+    };
+    
+    <button onClick={this.doHandleIncrement} 
+    </button>
+
+Using an inline function (Better solution)
+
+    handleIncrement = product => {
+            console.log(product);
+    }
+    
+    <button onClick={() => this.handleIncrement(product)} 
+    </button>
+
+When you need to pass an argument to an event handler,  
+simply pass an arrow function `() =>` and  
+in the body of the function call the event handler `this.handleIncrement()` and  
+pass an argument `{id:1})`  
 
 
-
-
-
+<hr><hr>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
