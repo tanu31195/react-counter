@@ -100,15 +100,27 @@ or
 
 Arrow functions cannot rebind `this`, they inherit `this`
 
+### Updating the State
+In React the State is not directly updated.
+`this.state.count++;` value of the count property is incremented but react isn't aware of that.  
+So the view is not updated.  
+to solve this we use an inherited method `this.setState()` from the base `Component` in React.  
 
+In Angular automatically detects the changes,  
+because all browser events are monkey patched (It allows you to modify the behaviour of a piece of code without altering the original code)  
+When a button is clicked or type something Angular is notified and runs it's change detection algorithm, and will update the view. 
 
+In React we have to explicitly tell what has changed.
 
+`this.setState({count: this.state.count + 1});`   
+Passes the count property: get the current count + increment by 1 and set it 
+Argument to setState, we pass an object and the properties of the object will be merged with what we have in the State object or
+it will override those properties if they already exists. 
 
-
-
-
-
-
+`this.setState()`  this will tell React the state of the component is going to change.  
+React will then schedule a call to the render() sometime in the future, this is an asynchronous call  
+So the virtual DOM will be updated and will compare with the old DOM to figure out what elements are modified  
+and update the corresponding elements in the Real DOM.
 
 
 

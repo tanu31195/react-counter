@@ -7,8 +7,9 @@ class Counter extends Component {
       tags: ['tag1', 'tag2', 'tag3']
     };
 
-    handleIncrement() {
+    handleIncrement = () => {
         console.log('Increment clicked');
+        this.setState({count: this.state.count + 1});
     };
 
     render() {
@@ -22,7 +23,7 @@ class Counter extends Component {
                 {/*    {this.state.tags.map(tag => <li key={tag}> {tag} </li>)}*/}
                 {/*</ul>*/}
                 {this.state.tags.length === 0 && 'Please add a new tag!'}
-                {this.renderTags()}
+                {/*{this.renderTags()}*/}
             </div>
         );
     }
