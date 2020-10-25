@@ -152,7 +152,28 @@ in the body of the function call the event handler `this.handleIncrement()` and
 pass an argument `{id:1})`  
 
 
-<hr><hr>
+### Composing components
+
+`key={}` is used to identify elements uniquely, not a attribute in props
+
+Use an array and then map to have multiple elements of the same component
+
+`this.props` Every React component has property called `props`    
+This is a plain JS object  
+Includes all attributes that are set in the parent component  
+Props are Read-only  
+`pure` functions do not attempt to change their inputs  
+We can read the prop values and use that to initialize components  
+Name props from the component’s own point of view rather than the context in which it is being used
+Eg: Counter has a value  
+
+`<Counter key={counter.id} value={counter.value} selected/>)` Selected will be true by default in props
+
+
+
+
+
+<hr>  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
