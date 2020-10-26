@@ -160,7 +160,7 @@ Use an array and then map to have multiple elements of the same component
 
 `this.props` Every React component has property called `props`    
 This is a plain JS object  
-Includes all attributes that are set in the parent component  
+Includes all attributes that are set in the parent component (passing attributes to the other component using props)  
 Props are Read-only  
 `pure` functions do not attempt to change their inputs  
 We can read the prop values and use that to initialize components  
@@ -168,6 +168,22 @@ Name props from the component’s own point of view rather than the context in w
 Eg: Counter has a value  
 
 `<Counter key={counter.id} value={counter.value} selected/>)` Selected will be true by default in props
+
+Attributes set in a component can be passed onto another component using `props` object
+
+### Passing children
+`children` prop is used when we need to pass something between the opening and closing tags of an element  
+Can be used to pass complex elements to child components  
+So we can pass elements through components  
+counters.jsx
+        
+        <Counter>
+            <h4> This heading is a child </h4>
+        </counter>    
+
+counters.jsx
+
+        {this.props.children}
 
 
 
