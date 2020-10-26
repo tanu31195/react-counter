@@ -186,8 +186,24 @@ counters.jsx
         {this.props.children}
 
 
+## Prop VS State
+
+`prop`  includes data that we give to a component  
+Read-only  
+Input to a component
+If we need to modify the prop values we can put it in the local state and use as required
 
 
+`state` includes data that is local or private to that component, so other components cannot access that state  
+Some components may not have a state and get all the data via props
+
+
+
+### Raising and handling events
+
+
+## Debugging React Applications
+Use React Developer Tools browser extension  
 
 <hr>  
 

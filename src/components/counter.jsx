@@ -16,7 +16,6 @@ class Counter extends Component {
 
         return (
             <div>
-                {this.props.children}
                 {/*Using dynamic classes*/}
                 <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
                 <button
