@@ -155,6 +155,7 @@ pass an argument `{id:1})`
 ### Composing components
 
 `key={}` is used to identify elements uniquely, not a attribute in props
+Key is used internally by React, that's why we have to pass `id{}`  
 
 Use an array and then map to have multiple elements of the same component
 
@@ -197,9 +198,13 @@ If we need to modify the prop values we can put it in the local state and use as
 `state` includes data that is local or private to that component, so other components cannot access that state  
 Some components may not have a state and get all the data via props
 
-
-
 ### Raising and handling events
+
+The component that owns a piece of the state, should be the one modifying it.  
+
+Counter component will raise an event > onEvent  
+Counters component will handle the event> handleEvent  
+
 
 
 ## Debugging React Applications
