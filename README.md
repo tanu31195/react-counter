@@ -202,8 +202,35 @@ Some components may not have a state and get all the data via props
 
 The component that owns a piece of the state, should be the one modifying it.  
 
-Counter component will raise an event > onEvent  
-Counters component will handle the event> handleEvent  
+Number of counters are in the counters state  
+(child) Counter component will raise an event > onEvent  
+(parent) Counters component will handle the event> handleEvent  
+
+`onDelete={this.handleDelete}` passing reference of the `handleDelete` function to the child component (counter).  
+We name the prop based on the name of the event `onDelete`  
+
+`<button onClick={() => this.props.onDelete(this.props.counter.id)}` name of the prop passed in the parent component
+
+
+We can pass the object from parent via props and access in obj using `this.props.obj.____`
+
+    <Counter key={counter.id} onDelete={this.handleDelete} value={counter.value} id={counter.id} />)  
+
+    (this.props.id)
+    (this.props.value)
+ 
+ 
+ Better way using encapsulation,   
+ 
+    <Counter key={counter.id} onDelete={this.handleDelete} counter={counter} />)
+
+    (this.props.counter.id)
+    (this.props.counter.value)
+
+
+
+### Single source of truth
+
 
 
 
