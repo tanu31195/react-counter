@@ -244,6 +244,33 @@ Passing a reference of an object from the child component
 makes the implementation of the event handler easier  
 rather than passing an id of the component
 
+#### Stateless Functional component
+Doesn't have it's own local state  
+Receives all the data via props   
+No event handlers or helper methods  
+
+Only have a single render method  
+Instead of having a class extended with a render()  
+we simply define a function that returns a react element  
+In functional component need to add props as a parameter  
+React will pass the props object as an argument to this function at runtime  
+
+    const NavBar = (props) => {
+        return (
+        <component>
+            {props.}
+        </component>
+        )
+    }    
+
+Classes can also be used
+`{this.props.}` only works in class components
+
+    class NavBar extends Component {
+        render() {
+        }
+    }
+
 
 ### Object Destructuring
 Extract properties from objects and bind them to variables.  
