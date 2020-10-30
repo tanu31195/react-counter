@@ -230,6 +230,26 @@ We can pass the object from parent via props and access in obj using `this.props
 
 
 ### Single source of truth
+state is only executed once when an instance of a component is created
+
+Removing local state 
+
+#### Controlled component
+Doesn't have it's own local state  
+Receives all the data via props  
+Raises events whenever data needs to be changed  
+Parent take cares of modifying data 
+
+Passing a reference of an object from the child component  
+makes the implementation of the event handler easier  
+rather than passing an id of the component
+
+
+### Object Destructuring
+Extract properties from objects and bind them to variables.  
+Object destructuring can extract multiple properties in one statement,  
+can access properties from nested objects,  
+and can set a default value if the property doesn't exist.
 
 
 
