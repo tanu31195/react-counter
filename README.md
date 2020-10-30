@@ -252,6 +252,10 @@ can access properties from nested objects,
 and can set a default value if the property doesn't exist.
 
 
+<React.Fragment>...</React.Fragment>  
+Used when returning multiple root elements from the render method  
+
+
 
 
 ## Debugging React Applications
