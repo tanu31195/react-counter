@@ -105,6 +105,7 @@ In React the State is not directly updated.
 `this.state.count++;` value of the count property is incremented but react isn't aware of that.  
 So the view is not updated.  
 to solve this we use an inherited method `this.setState()` from the base `Component` in React.  
+`this.setState()` can only be called when a component is rendered and placed in the DOM
 
 In Angular automatically detects the changes,  
 because all browser events are monkey patched (It allows you to modify the behaviour of a piece of code without altering the original code)  
@@ -248,6 +249,7 @@ rather than passing an id of the component
 Doesn't have it's own local state  
 Receives all the data via props   
 No event handlers or helper methods  
+Lifecycle hooks cannot be used because we only have a single function that outputs the component
 
 Only have a single render method  
 Instead of having a class extended with a render()  
@@ -283,7 +285,80 @@ and can set a default value if the property doesn't exist.
 Used when returning multiple root elements from the render method  
 
 
+## Lifecycle Hooks
+Components go through a few phases during it's lifecycle  
+React will automatically call these methods referred to as lifecycle hooks when going through each phase  
+So they allow us to hook into certain moments during the lifecycle of a component and do something  
+Can only be used in class components
 
+### 1. Mounting Phase
+When an instance of a component/class is created and inserted to the DOM  
+
+#### 1.1 constructor
+Called only once when an instance of a class is created  
+Best place to initialize properties in that instance  
+Set the state based on the props received  
+In the constructor the state is set directly
+`this.setState()` can only be called when a component is rendered and placed in the DOM
+
+We won't have access to this.props unless we pass it as a parameter to the constructor  
+otherwise this.props will return undefined 
+
+    construtor(props) {
+        super(props);
+        this.state = this.props.something 
+        
+    }
+
+#### 1.2 render
+When a component is rendered all it's child components are also rendered recursively
+
+    render() {
+        //returns a react element that represents the virtual DOM
+    }
+
+#### 1.3 componentDidMount
+Called after the component is rendered on the DOM  
+Perfect place to make Ajax calls to get data from the server  
+
+    componentDidMount() {
+        this.setState( {something} )
+    }
+
+### 2. Updating Phase
+Whenever we change the state of the component or the props  
+
+#### 2.1 render
+When updating the state, react will schedule a call to the render()  
+which means all it's child components are rendered as well  
+Entire component tree is rendered it doesn't mean that the entire DOM is updated  
+When a component is rendered we basically get a react element which updated the virtual DOM  
+React will then look at the new virtual DOM and it has a copy of the old virtual DOM  
+(this is why we should not update the state directly) So we can have two different object references in memory  
+Then react will figure out what is changed and based on that React will update the Real DOM  
+
+
+#### 2.2 componentDidUpdate
+This method is called after a component is updated which means we have a new state or new props  
+So we can compare the new state/props and old state/props  
+if there is a change we can make an Ajax request to get new data  
+So if there is no change it will not make an unwanted additional Ajax call  
+
+    componentDidUpdate(prevProps, prevState) {
+        if ( prevProps.counter.value !== this.props.counter.value ) {
+            //Ajax call and get new data from the server
+        }
+    }
+
+### 3. Unmount Phase
+When a component is removed from the DOM such as when we delete a component  
+
+#### 3.1 componentWillUnmount
+This method is called just before a component is removed from the DOM  
+State will be changed when deleting so the entire component tree will be re-rendered  
+So there will be a new virtual DOM and react will compare with the old one and it figures out a component is removed  
+So then react will call this method before removing the component from the DOM  
+This gives an opportunity to do any kind of clean up 
 
 ## Debugging React Applications
 Use React Developer Tools browser extension  
