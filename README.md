@@ -281,7 +281,7 @@ can access properties from nested objects,
 and can set a default value if the property doesn't exist.
 
 
-<React.Fragment>...</React.Fragment>  
+`<React.Fragment>...</React.Fragment>` or `<>...</>`  
 Used when returning multiple root elements from the render method  
 
 
@@ -359,6 +359,24 @@ State will be changed when deleting so the entire component tree will be re-rend
 So there will be a new virtual DOM and react will compare with the old one and it figures out a component is removed  
 So then react will call this method before removing the component from the DOM  
 This gives an opportunity to do any kind of clean up 
+
+
+### StrictMode
+React's `StrictMode` is sort of a helper component that will help you write better react components,  
+you can wrap a set of components with `<StrictMode />`.   
+It activates additional checks and warnings for its descendants
+
+- Verify that the components inside are following some of the recommended practices and warn you if not in the console.
+- Verify the deprecated methods are not being used, and if they're used strict mode will warn you in the console.
+- Help you prevent some side effects by identifying potential risks.
+
+### Custom Environment Variables
+Create custom environment variables beginning with `REACT_APP_`
+These environment variables can be accessed on `process.env`
+
+### [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+
+### [create-react-app](https://create-react-app.dev/docs/getting-started)
 
 ## Debugging React Applications
 Use React Developer Tools browser extension  
