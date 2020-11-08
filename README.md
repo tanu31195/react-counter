@@ -30,7 +30,10 @@ or
 `export default Counter;`
 can be used to export
 
-<hr>  
+<hr>
+  
+### Separation of Concerns
+Break different functionalities into smaller pieces  
 
 ### && Operator
 However, the && operator actually returns the value of one of the specified operands, 
@@ -156,7 +159,8 @@ pass an argument `{id:1})`
 ### Composing components
 
 `key={}` is used to identify elements uniquely, not a attribute in props
-Key is used internally by React, that's why we have to pass `id{}`  
+Key is used internally by React, that's why we have to pass `id{}` for our use  
+Keys are important, because they uniquely identify elements, helping React understand which items have changed, are added, or are removed   
 
 Use an array and then map to have multiple elements of the same component
 
@@ -228,7 +232,19 @@ We can pass the object from parent via props and access in obj using `this.props
     (this.props.counter.id)
     (this.props.counter.value)
 
+Data can be passed from the parent to the child, but not from the child to the parent.  
+React uses what is called unidirectional data flow, in other words, data only flows downward
+React allows us to pass down function references
 
+### Forms  
+Event names use camelCase syntax and the event handler needs to be passed in curly braces  
+We can handle user input in React using the onChange event of the text field.  
+When the value of the text field changes, the event handler is called,  
+updating the value of the field in the component's state  
+
+React form elements keep their state  
+An input form element whose value is controlled by React is called a "controlled component"
+`e.preventDefault();` is used to stop reloading the page when form is submitted
 
 ### Single source of truth
 state is only executed once when an instance of a component is created
@@ -245,11 +261,23 @@ Passing a reference of an object from the child component
 makes the implementation of the event handler easier  
 rather than passing an id of the component
 
-#### Stateless Functional component
+#### Functional component
 Doesn't have it's own local state  
 Receives all the data via props   
 No event handlers or helper methods  
 Lifecycle hooks cannot be used because we only have a single function that outputs the component
+Earlier these were called stateless functional components but after hooks these can use the state
+
+    const Example = (props) => {
+    // You can use Hooks here!
+    return <div />;
+    }
+or this:
+
+    function Example(props) {
+    // You can use Hooks here!
+    return <div />;
+    }
 
 Only have a single render method  
 Instead of having a class extended with a render()  
@@ -284,8 +312,32 @@ and can set a default value if the property doesn't exist.
 `<React.Fragment>...</React.Fragment>` or `<>...</>`  
 Used when returning multiple root elements from the render method  
 
+### StrictMode
+React's `StrictMode` is sort of a helper component that will help you write better react components,  
+you can wrap a set of components with `<StrictMode />`.   
+It activates additional checks and warnings for its descendants
 
-## Lifecycle Hooks
+- Verify that the components inside are following some of the recommended practices and warn you if not in the console.
+- Verify the deprecated methods are not being used, and if they're used strict mode will warn you in the console.
+- Help you prevent some side effects by identifying potential risks.
+
+### Custom Environment Variables
+Create custom environment variables beginning with `REACT_APP_`
+These environment variables can be accessed on `process.env`
+
+
+### Side Effects
+Side effects are the easier concept. 
+A "pure function" is a function that maps its input values into an output value  
+`function plus(x, y) { return x + y; }`.  
+A "side effect" is any effect other than that return value:
+`function plusWithSideEffects(x, y) { alert("This is a side effect"); return x + y; }`
+
+### [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+
+### [create-react-app](https://create-react-app.dev/docs/getting-started)
+
+## Lifecycle methods
 Components go through a few phases during it's lifecycle  
 React will automatically call these methods referred to as lifecycle hooks when going through each phase  
 So they allow us to hook into certain moments during the lifecycle of a component and do something  
@@ -361,22 +413,41 @@ So then react will call this method before removing the component from the DOM
 This gives an opportunity to do any kind of clean up 
 
 
-### StrictMode
-React's `StrictMode` is sort of a helper component that will help you write better react components,  
-you can wrap a set of components with `<StrictMode />`.   
-It activates additional checks and warnings for its descendants
+## Hooks
+Hooks let you split one component into smaller functions based on what pieces are related  
+Hooks can only be used inside functional components and don’t work inside classes  
+Hooks lets us to use the state and other React features without writing a class in a functional component.  
+Hook names will be started from use... (useHookname)   
+Only Call Hooks from React Functions(React function components and custom Hooks)
 
-- Verify that the components inside are following some of the recommended practices and warn you if not in the console.
-- Verify the deprecated methods are not being used, and if they're used strict mode will warn you in the console.
-- Help you prevent some side effects by identifying potential risks.
+### useState
+Earlier version of React allowed to use state only with class components
+`useState` returns a pair(an array with two items), the current state value and a function, that lets you change the state  
+`useState` takes one argument which is the initial value of the state
+`const [name, setName] = useState("David")`;
+^ declares a state variable called name with a initial value of David
 
-### Custom Environment Variables
-Create custom environment variables beginning with `REACT_APP_`
-These environment variables can be accessed on `process.env`
+##### However, unlike this.setState in a class, updating a state variable always replaces it instead of merging it.
 
-### [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+### useEffect
+Runs after every render by default but can skip if certain values haven’t changed between re-renders
+Effect Hook lets you perform side effects in functional components
+Data fetching, setting up a subscription, and manually changing the DOM  
+in React components are all examples of side effects.
+`useEffect` Hook is like React class lifecycle methods componentDidMount, componentDidUpdate, and componentWillUnmount combined
+Make lifecycle methods available in functional components  
+Can have multiple effects in the same component  
 
-### [create-react-app](https://create-react-app.dev/docs/getting-started)
+Types of Side effects are that don't require cleanup and those that do  
+Network requests, manual DOM mutations, and logging are common examples of effects that don’t require a cleanup  
+Subscription to some external data source require a cleanup  
+
+`useEffect(() => {}, []);` accepts two parameters 1.Callback function 2.Dependency array
+If the dependency array is empty it acts as a componentDidMount which means it only runs initially when rendering
+
+If the effects returns a function it will run at clean up (optional)
+
+<hr>
 
 ## Debugging React Applications
 Use React Developer Tools browser extension  
