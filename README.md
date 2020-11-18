@@ -442,10 +442,12 @@ Types of Side effects are that don't require cleanup and those that do
 Network requests, manual DOM mutations, and logging are common examples of effects that don’t require a cleanup  
 Subscription to some external data source require a cleanup  
 
-`useEffect(() => {}, []);` accepts two parameters 1.Callback function 2.Dependency array
-If the dependency array is empty it acts as a componentDidMount which means it only runs initially when rendering
+`useEffect(() => {//   return()}, []);` accepts two parameters 1.Callback function 2.Dependency array
+If we don't add an array effect will run every single time when the app renders  
+If the dependency array is empty it acts as a componentDidMount which means it only runs initially when rendering  
+If the dependency array has values effect will run when values change only   
 
-If the effects returns a function it will run at clean up (optional)
+If the effects returns a function it will run at clean up (optional)  
 
 <hr>
 
